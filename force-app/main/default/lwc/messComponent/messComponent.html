@@ -1,0 +1,89 @@
+<!--
+  @description       : 
+  @author            : VIKASH MUNDARI
+  @group             : 
+  @last modified on  : 06-12-2024
+  @last modified by  : VIKASH MUNDARI
+-->
+<template>
+    <lightning-card title="Mess Bill Management">
+
+        <!-- add record button and submit button -->
+        <!-- <div class="slds-grid slds-wrap">
+            <div class="slds-size_12-of-12 slds-medium-size_6-of-12">
+                <lightning-button label="Add Entry" onclick={addEntry} variant="brand"></lightning-button>
+            </div>
+            <div class="slds-size_12-of-12 slds-medium-size_6-of-12">
+                <lightning-button label="Submit" onclick={handleSubmit} variant="brand"></lightning-button>
+            </div>
+        </div> -->
+
+        <!-- add entry -->
+        <div class="slds-grid slds-wrap ">
+            <div class="slds-size_12-of-12 slds-medium-size_6-of-12 slds-p-around_small">
+                <lightning-button label="Add Entry" onclick={addEntry} variant="brand"></lightning-button>
+            </div>
+        </div>
+
+
+
+        <!-- table -->
+        <div class="slds-scrollable_y">
+            <table
+                class="slds-table slds-table_bordered slds-table_cell-buffer slds-max-medium-table_stacked-horizontal">
+                <thead>
+                    <tr>
+                        <th class="slds-text-title_caps">Serial No.</th>
+                        <th class="slds-text-title_caps">Name</th>
+                        <th class="slds-text-title_caps">Amount</th>
+                        <th class="slds-text-title_caps">Order</th> <!-- Moved Order before Date -->
+                        <th class="slds-text-title_caps">Date</th> <!-- Date now comes after Order -->
+                        <th class="slds-text-title_caps">Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                    <template for:each={entries} for:item="entry" for:index="index">
+                        <tr key={entry.id}>
+                            <td data-label="Serial No.">{entry.serialNumber}</td>
+                            <td data-label="Name">
+                                <lightning-input value={entry.name} onchange={handleInputChange} data-index={index}
+                                    data-field="name"></lightning-input>
+                            </td>
+
+                            <td data-label="Amount">
+                                <lightning-input type="number" value={entry.amount} onchange={handleInputChange}
+                                    data-index={index} data-field="amount"></lightning-input>
+                            </td>
+                            <td data-label="Order">
+                                <lightning-combobox value={entry.order} options={orderOptions}
+                                    onchange={handleInputChange} data-index={index}
+                                    data-field="order"></lightning-combobox>
+                            </td>
+                            
+                            <td data-label="Date">
+                                <lightning-input type="date" value={entry.date} onchange={handleInputChange}
+                                    data-index={index} data-field="date"></lightning-input>
+                            </td>
+
+
+                            <!-- delete button -->
+                            <td data-label="Action">
+                                <lightning-button-icon icon-name="utility:delete" onclick={deleteEntry}
+                                    data-entry-id={entry.id} alternative-text="Delete"></lightning-button-icon>
+                            </td>
+                        </tr>
+                    </template>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- submit -->
+        <div class="slds-grid slds-wrap ">
+            <div class="slds-size_12-of-12 slds-medium-size_6-of-12 slds-p-around_small">
+                <lightning-button label="Submit" onclick={handleSubmit} variant="brand"></lightning-button>
+            </div>
+        </div>
+
+    </lightning-card>
+</template>

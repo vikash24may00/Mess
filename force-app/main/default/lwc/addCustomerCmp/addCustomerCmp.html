@@ -1,0 +1,32 @@
+<!-- addCustomers.html -->
+<template>
+    <lightning-card title="Add Customers">
+        <div class="slds-m-around_medium">
+            <template for:each={customers} for:item="customer" for:index="keyIndex">
+                <div key={customer.keyIndex} class="slds-grid slds-gutters">
+                    <div class="slds-col">
+                        <lightning-input type="text" name="FirstName" label="First Name" value={customer.FirstName} onchange={handleInputChange} data-index={keyIndex} data-field="FirstName"></lightning-input>
+                    </div>
+                    <div class="slds-col">
+                        <lightning-input type="text" name="LastName" label="Last Name" value={customer.LastName} onchange={handleInputChange} data-index={keyIndex} data-field="LastName"></lightning-input>
+                    </div>
+                    <div class="slds-col">
+                        <lightning-input type="email" name="Email" label="Email" value={customer.Email} onchange={handleInputChange} data-index={keyIndex} data-field="Email"></lightning-input>
+                    </div>
+                    <div class="slds-col">
+                        <lightning-input type="text" name="Gender" label="Gender" value={customer.Gender} onchange={handleInputChange} data-index={keyIndex} data-field="Gender"></lightning-input>
+                    </div>
+                    <div class="slds-col">
+                        <lightning-button-icon icon-name="utility:delete" alternative-text="Remove" title="Remove" onclick={removeCustomer} data-index={keyIndex}></lightning-button-icon>
+                    </div>
+                </div>
+            </template>
+            <div class="slds-m-top_medium">
+                <lightning-button label="Add Customer" onclick={addCustomer}></lightning-button>
+            </div>
+            <div class="slds-m-top_medium">
+                <lightning-button variant="brand" label="Submit" onclick={handleSubmit}></lightning-button>
+            </div>
+        </div>
+    </lightning-card>
+</template>
